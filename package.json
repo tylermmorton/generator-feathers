@@ -83,7 +83,7 @@
     "jshint": "^2.11.0",
     "mocha": "^7.0.1",
     "mongodb": "^3.5.3",
-    "mongoose": "^5.8.13",
+    "mongoose": "^5.9.2",
     "nedb": "^1.8.0",
     "nodemon": "^2.0.2",
     "objection": "^2.1.2",
