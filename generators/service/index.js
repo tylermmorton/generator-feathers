@@ -163,15 +163,11 @@ module.exports = class ServiceGenerator extends Generator {
     if (!this.fs.exists(mainFile)) {
       const servicejs = this.srcDestinationPath(this.libDirectory, 'services', 'index');
       let transformed;
-      if (this.isTypescript) {
-        transformed = this._transformCodeTs(
-          this.fs.read(servicejs).toString()
-        );
-      } else {
-        transformed = this._transformCode(
-          this.fs.read(servicejs).toString()
-        );
-      }
+
+      transformed = this._transformCodeTs(
+        this.fs.read(servicejs).toString()
+      );
+
       this.conflicter.force = true;
       this.fs.write(servicejs, transformed);
     }

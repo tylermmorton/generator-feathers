@@ -1,6 +1,7 @@
-<% if (requiresAuth) { %>const { authenticate } = require('@feathersjs/authentication').hooks;<% } %>
+<% if (requiresAuth) { %>import * as feathersAuthentication from '@feathersjs/authentication';<% 
+const { authenticate } = feathersAuthentication.hooks;} %>
 
-module.exports = {
+export default {
   before: {
     all: [<% if (requiresAuth) { %> authenticate('jwt') <% } %>],
     find: [],

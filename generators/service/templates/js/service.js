@@ -1,7 +1,7 @@
 // Initializes the `<%= name %>` service on path `/<%= path %>`
-const { <%= className %> } = require('./<%= kebabName %>.class');<% if(modelName) { %>
-const createModel = require('<%= relativeRoot %>models/<%= modelName %>');<% } %>
-const hooks = require('./<%= kebabName %>.hooks');
+import { <%= className %> } from './<%= kebabName %>.class';<% if(modelName) { %>
+import createModel from '<%= relativeRoot %>models/<%= modelName %>';<% } %>
+import hooks from './<%= kebabName %>.hooks';
 
 module.exports = function (app) {
   const options = {<% if (modelName) { %>

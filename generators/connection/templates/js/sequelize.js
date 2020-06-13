@@ -1,32 +1,32 @@
-const Sequelize = require('sequelize');
+import { Sequelize } from "sequelize";
 
-module.exports = function (app) {
-  const connectionString = app.get('<%= database %>');
+export default function (app) {
+  const connectionString = app.get("<%= database %>");
   const sequelize = new Sequelize(connectionString, {
-    dialect: '<%= database %>',
+    dialect: "<%= database %>",
     logging: false,
     define: {
-      freezeTableName: true
-    }
+      freezeTableName: true,
+    },
   });
   const oldSetup = app.setup;
 
-  app.set('sequelizeClient', sequelize);
+  app.set("sequelizeClient", sequelize);
 
   app.setup = function (...args) {
     const result = oldSetup.apply(this, args);
 
     // Set up data relationships
     const models = sequelize.models;
-    Object.keys(models).forEach(name => {
-      if ('associate' in models[name]) {
+    Object.keys(models).forEach((name) => {
+      if ("associate" in models[name]) {
         models[name].associate(models);
       }
     });
 
     // Sync to the database
-    app.set('sequelizeSync', sequelize.sync());
+    app.set("sequelizeSync", sequelize.sync());
 
     return result;
   };
-};
+}

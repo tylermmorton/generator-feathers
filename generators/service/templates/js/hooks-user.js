@@ -1,4 +1,5 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+import * as feathersAuthentication from "@feathersjs/authentication";
+const { authenticate } = feathersAuthentication.hooks;
 
 <% if (authentication.strategies.indexOf('local') !== -1) { %>const {
   hashPassword, protect
