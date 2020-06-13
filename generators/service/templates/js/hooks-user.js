@@ -1,11 +1,11 @@
-import * as feathersAuthentication from "@feathersjs/authentication";
-const { authenticate } = feathersAuthentication.hooks;
+<% if (requiresAuth) { %>import * as feathersAuthentication from '@feathersjs/authentication';<%
+const { authenticate } = feathersAuthentication.hooks;} %>
 
 <% if (authentication.strategies.indexOf('local') !== -1) { %>const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;<% } %>
 
-module.exports = {
+export default {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
